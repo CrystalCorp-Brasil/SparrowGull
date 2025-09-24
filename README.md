@@ -14,4 +14,4 @@ Com o passar dos anos tivemos contribuições de outros jogadores que colaborara
 
 Em 2021 foi criada a CrystalCorp Dark, mesmo principios e ideais só que para a facção de vilões.
 
-Atualmente as duas ligas estão com vários integrantes ativos e colaboradores com os principios iniciais de suas fundações.
+Atualmente as duas ligas estão com vários integrantes ativos e colaboradores com os principios iniciais de seu fundador.
