@@ -10,6 +10,10 @@
                 $table->string('name');
                 $table->string('username')->unique();
                 $table->string('email')->unique();
+                $table->text('image')->nullable();
+                $table->longText('bio')->nullable();
+                $table->enum('level', ['admin','editor','user'])->default('user');
+                $table->enum('status', ['active','inactive'])->default('active');
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
                 $table->rememberToken();

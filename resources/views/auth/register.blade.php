@@ -1,59 +1,91 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.root.layout',['pageActive'=>'auth'])
+@section('headTitle')Registro @endsection
+@section('content')
+        <main class="main min-vh-100" id="top">
+            <section class="py-0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8 p-0">
+                            <div class="sticky-top vh-lg-100">
+                                <div class="bg-holder" style="background-image:url({{ asset('images/adm/register.gif') }});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row h-100 align-items-center justify-content-center">
+                                <a href="/" class="text-center">
+                                    <img src="{{ asset('images/crystalcorp.png') }}" width="100px" data-bs-toggle="tooltip" data-bs-placement="right" title="Página Inicial" alt="Grupo CrystalCorp"><br>
+                                </a>
+                                <div class="col-sm-8 col-md-6 col-lg-10 col-xl-8" data-zanim-xs='{"delay":0.5,"animation":"slide-right"}' data-zanim-trigger="scroll">
+                                    <h3 class="display-4 fs-7 cc-yellow">Bem vindo a CrystalCorp.</h3>
+                                    <h6 class="text-danger">Por favor, complete seu resgitro.</h6>
+                                    <form class="mt-5" method="POST" action="{{ route('register') }}">
+                                        @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- UserName -->
-        <div>
-            <x-input-label for="username" :value="__('UserName')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+                                        <div class="mb-0">
+                                            <div class="form-group row py-0">
+                                                <label class="col-form-label text-orange py-0" for="name">Insira seu Nome</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-user"></i></span>
+                                                    <input class="form-control" type="name" id="name" name="name"  placeholder="Nome" value="{{ old('name') }}" autocomplete="name" autofocus>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <div class="form-group row py-0">
+                                                <label class="col-form-label text-orange py-0" for="username">Insira um nome de Usuário</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-user"></i></span>
+                                                    <input class="form-control" type="username" id="username" name="username"  placeholder="Nome de Usuário" value="{{ old('username') }}" autocomplete="username" autofocus>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <div class="form-group row py-0">
+                                                <label class="col-form-label text-orange py-0" for="email">Insira seu E-mail</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-user"></i></span>
+                                                    <input class="form-control" type="email" id="email" name="email"  placeholder="Email" value="{{ old('email') }}" autocomplete="email" autofocus>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <div class="form-group row py-0">
+                                                <label class="col-form-label text-orange py-0" for="password">Insira sua Senha</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-key"></i></span>
+                                                    <input class="form-control" type="password" id="password" name="password" placeholder="Senha" autocomplete="current-password"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-group row py-0">
+                                                <label class="col-form-label text-orange py-0" for="password">Confirme a Senha</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-key"></i></span>
+                                                    <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirme a Senha" autocomplete="current-password"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 d-grid"><button class="btn btn-a-link-1" type="submit" name="submit"><i class="far fa-save"></i>&nbsp;&nbsp;Registrar</button></div></br>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-sm-4 text-center">
+                                            <h6>Já tem uma conta?</h6>
+                                            <a href="{{ route('login') }}" class="btn btn-outline-info btn-rounded mt-2"><i class="fa fa-user-lock mr-3"></i><b>Logar</b></a>
+                                        </div>
+                                        <div class="col-sm-8 text-center">
+                                            <h6>Ao se inscrever, você concorda com os termos e condições.</h6>
+                                            <a href="{{ route('termsOfUse') }}" class="btn btn-outline-warning btn-rounded mt-2" target="_blank"><i class="fad fa-ballot-check mr-3"></i><b>Termos de Uso</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+@endsection
+@section('scripts')
+        @include('components.mySweetAlertMessages')
+@endsection

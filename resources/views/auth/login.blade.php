@@ -1,33 +1,61 @@
-@extends('layouts.root',['bgClass'=>'bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col'])
+@extends('layouts.root.layout',['pageActive'=>'auth'])
+@section('headTitle')Autenticação @endsection
 @section('content')
-            <x-auth-session-status class="mb-4" :status="session('status')" />
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
+            <section class="py-0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8 px-0">
+                            <div class="sticky-top vh-lg-100">
+                                <div class="bg-holder" style="background-image:url({{ asset('images/adm/login.gif') }});" data-zanim-trigger="scroll" data-zanim-lg='{"animation":"zoom-out-slide-right","delay":0.4}'></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row h-100 align-items-center justify-content-center">
+                                <a href="/" class="text-center">
+                                    <img src="{{ asset('images/crystalcorp.png') }}" width="100px" data-bs-toggle="tooltip" data-bs-placement="right" title="Página Inicial" alt="Grupo CrystalCorp"><br>
+                                </a>
+                                <div class="col-sm-8 col-md-6 col-lg-10 col-xl-8" data-zanim-xs='{"delay":0.5,"animation":"slide-right"}' data-zanim-trigger="scroll">
+                                    <h3 class="display-4 fs-7">Bem vindo a CrystalCorp.</h3>
+                                    <h6 class="text-danger">Faça seu login para continuar.</h6>
+                                    <form class="mt-5" method="POST" action="{{ route('login') }}">
+                                        @csrf
 
-                <div>
-                    <x-input-label for="login" :value="__('Email or UserName')"/>
-                    <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" autofocus autocomplete="username" />
+                                        <div class="mb-0">
+                                            <div class="form-group row pt-4">
+                                                <label class="col-form-label text-orange" for="login">Insira seu E-mail ou Usuário</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-user"></i></span>
+                                                    <input class="form-control" type="text" id="login" name="login"  placeholder="email ou usuário" value="{{ old('login') }}" autocomplete="login" autofocus>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-0">
+                                            <div class="form-group row pt-0">
+                                                <label class="col-form-label text-orange" for="password">Insira sua Senha</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text px-3" id="basic-addon3"><i class="fad fa-key"></i></span>
+                                                    <input class="form-control" type="password" id="password" name="password" placeholder="Senha" autocomplete="current-password"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 d-grid"><button class="btn btn-a-link-1 mt-4" type="submit" name="submit"><i class="far fa-user"></i>&nbsp;&nbsp;Logar</button></div></br>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-sm-6 text-center">
+                                            <h6>Não tem uma conta?</h6>
+                                            <a href="{{ route('register') }}" class="btn btn-outline-info btn-rounded mt-2"><i class="fa fa-edit"></i>&nbsp;&nbsp;<b>Registrar-se</b></a>
+                                        </div>
+                                        <div class="col-sm-6 text-center">
+                                            <h6>Esqueceu sua senha?</h6>
+                                            <a href="{{ route('password.request') }}" class="btn btn-outline-warning btn-rounded mt-2"><i class="fa fa-envelope"></i>&nbsp;&nbsp;<b>Enviar e-mail</b></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" autocomplete="current-password" />
-                </div>
-                <div class="block mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                        <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-                    </label>
-                </div>
-                <div class="flex items-center justify-end mt-4">
-@if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
-@endif
-                    <x-primary-button class="ms-3">
-                        {{ __('Log in') }}
-
-                    </x-primary-button>
-                </div>
-            </form>
+            </section>
 @endsection
 @section('scripts')
         @include('components.mySweetAlertMessages')
